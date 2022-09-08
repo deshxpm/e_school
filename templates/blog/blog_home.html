@@ -1,0 +1,286 @@
+{% extends 'main/base.html' %}
+{% load static %}s
+
+{% block title %}Blog |InternYuva{% endblock %}
+
+{% block style %}
+    <style>
+        h5{
+        font-weight: bold;
+        }
+        p{
+            color:lightgrey!important;
+        }
+        .read_article_btn {
+            padding: 14px 45px;
+            box-shadow: 0 10px 25px 0 rgba(0, 1, 40, 0.15);
+            border: 0;
+            background: linear-gradient(95.74deg, #ff5856 -5.11%, #00147c 118.47%);
+            font-family: "Jost", Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.3;
+            color: #f5f5f5;
+            text-transform: uppercase;
+            z-index: 34;
+            position: relative;
+        }
+    </style>
+{% endblock %}
+
+{% block  content%}
+
+{% comment %}
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 pt-0 pt-lg-5">
+                    <div class="text-center pt-0 pt-lg-5">
+                        <h2 class="text-white">Blogs</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="contact-data">
+        <div class="container">
+            <div id="contact-bg" class="row mt-5">
+                {% for obj in objects %}
+                    <div class="col-lg-6">
+                    <br>
+                        <br>
+                        <br>
+                        <div class="contact-box text-center mb-5 mb-lg-0">
+                            <div class="contact-icon mb-4">
+                                <div class="course-img">
+									<img src="{{ obj.thumbnail.url }}">
+								</div>
+                                <br>
+                                <h5>{{ obj.name }}</h5>
+                            </div>
+                            <div class="course-btn">
+                                <a href="{{ obj.get_blog_absolute_url }}" class="theme-btn">
+                                    <i class="fas fa-play-circle mr-2" aria-hidden="true"></i>
+                                    <span>view blog</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endcomment %}
+    
+    <section>
+        <div class="container-fluid">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+              <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+              </ul>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{% static 'main/img/course-inner.jpg' %}" alt="Los Angeles" width="1100" height="500">
+                  <div class="carousel-caption">
+                    <h3>Los Angeles</h3>
+                    <p>We had such a great time in LA!</p>
+                    <a href="#" class="btn btn-warning btn-lg read_article_btn" >Read Article</a>
+                  </div>   
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'main/img/online-courses-1.jpg' %}" alt="Chicago" width="1100" height="500">
+                  <div class="carousel-caption">
+                    <h3>Chicago</h3>
+                    <p>Thank you, Chicago!</p>
+                    <a href="{% url 'blog_create' %}" class="btn btn-warning btn-lg read_article_btn">Read Article</a>
+                  </div>   
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'main/img/shutterstock_548778247.jpg' %}" alt="New York" width="1100" height="500">
+                  <div class="carousel-caption">
+                    <h3>New York</h3>
+                    <p>We love the Big Apple!</p>
+                    <a href="{% url 'blog_create' %}" class="btn btn-warning btn-lg read_article_btn">Read Article</a>
+                  </div>   
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+            </div>
+            
+        </div>
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <a href="#" class="btn btn-success"> Technology</a>
+                    <a href="#" class="btn btn-warning"> Science</a>
+                    <a href="#" class="btn btn-danger"> Entrepreneurship</a>
+                    <a href="#" class="btn btn-info"> Marketing</a>
+                </div>
+                <div class="col-md-12">
+                    <h4 style="color:white!important;">Top Reads This Week</h4>
+                </div>
+
+                <div class="col-md-12">
+                    <div id="reading-category-tags" style="display: flex;flex-wrap: wrap; color:white;">
+
+                <a href="#" class="tag-link-button">
+                    Technology
+                </a>
+                <a href="#" class="tag-link-button science-tag">
+                    Science
+                </a>
+                <a href="#" class="tag-link-button entrepreneur-tag">
+                    Entrepreneurship
+                </a>
+                <a href="#" class="tag-link-button marketing-tag">
+                    Marketing
+                </a>
+
+            </div>
+                </div>
+                {% for obj in objects %}
+                <div class="col-md-6 mt-5">
+                    {% if obj.thumbnail %}
+                        <img src="{{ obj.thumbnail.url }}">
+                    {% endif %}
+                    <a href="{{ obj.get_blog_absolute_url }}" class="h5" style="color:skyblue;">{{obj.title}}</a>
+                    <h5 style="color:white; font-weight: bold;">{{obj.sub_title}}</h5>
+                    <p>{{p.content}}</p>                        
+                    
+                    <footer class="post-card-meta">
+                        <a href="{{ obj.get_blog_absolute_url }}" class="ml-4">
+                            <img src="{{obj.author.user.profile_pic.url}}" width="48" height="auto" style="border-radius:50%;" alt="Narayanan S">
+                        </a>
+                        <div style="margin-top:-50px; font-weight:bold; margin-left: 90px;">
+                            {{obj.author}}
+                            <br>
+                            <span class="post-card-byline-date"><time datetime="2020-11-05">{{obj.date_posted}}</time> <span class="bull">•</span> 2 min read</span>
+                        </div>
+                    </footer>
+                </div>
+<!--                 <div class="col-md-6 mt-5">
+                    <h5 style="color:skyblue;">Technology</h5>
+                    <h5 style="color:white; font-weight: bold;">Best Practices: Web Development for Beginners</h5>
+                    <p>A quote attributed to Charles Darwin, “It is not the strongest of the species that survives, nor the most intelligent that survives. It is the one that is most adaptable to change.”, is something which speaks volumes about a quality which is not the</p>                        
+                    
+                    <footer class="post-card-meta">
+                        <a href="#" class="ml-4">
+{#                            <img src="{% static 'main/img/about1.jpg' %}" width="48" height="auto" style="border-radius:50%;" alt="Narayanan S">#}
+                        </a>
+                        <div style="margin-top:-50px; font-weight:bold; margin-left: 90px;">
+                            Narayanan S
+                            <br>
+                            <span class="post-card-byline-date"><time datetime="2020-11-05">5 Nov 2020</time> <span class="bull">•</span> 2 min read</span>      
+                        </div>
+                    </footer>
+                </div> -->
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+
+    <div class="container">
+       
+        <div class="row top">
+            <div class="col-md-12">
+                <h4>Heading</h4>
+            </div>
+            <div class="col-md-4">
+                <a href="">Lorem, ipsum.</a>
+                <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, ex voluptatibus, maiores porro quia
+                    cum voluptate exercitationem laudantium sunt modi debitis repellat maxime, cupiditate quod voluptas.
+                    Vel, dolores libero aliquam autem sapiente consequuntur repellendus rerum rem iste repudiandae
+                    facilis labore quis, doloribus eligendi sunt quae ullam ea vero obcaecati maxime?</p>
+            </div>
+            
+            <div class="col-md-4">
+                <a href="">Lorem, ipsum.</a>
+                <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, ex voluptatibus, maiores porro quia
+                    cum voluptate exercitationem laudantium sunt modi debitis repellat maxime, cupiditate quod voluptas.
+                    Vel, dolores libero aliquam autem sapiente consequuntur repellendus rerum rem iste repudiandae
+                    facilis labore quis, doloribus eligendi sunt quae ullam ea vero obcaecati maxime?</p>
+            </div>
+        </div>
+       <hr>
+
+
+        <div class="row second">
+            <div class="col-md-12">
+                <h2>Heading</h2>
+            </div>
+            <div class="col-md-3">
+                <a href="">Lorem, ipsum.</a>
+                <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, ex voluptatibus, maiores porro quia
+                    cum voluptate exercitationem laudantium sunt modi debitis repellat maxime, cupiditate quod voluptas.
+                    Vel, dolores libero aliquam autem sapiente consequuntur repellendus rerum rem iste repudiandae
+                    facilis labore quis, doloribus eligendi sunt quae ullam ea vero obcaecati maxime?</p>
+            </div>
+            
+            <div class="col-md-3">
+                <a href="">Lorem, ipsum.</a>
+                <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, ex voluptatibus, maiores porro quia
+                    cum voluptate exercitationem laudantium sunt modi debitis repellat maxime, cupiditate quod voluptas.
+                    Vel, dolores libero aliquam autem sapiente consequuntur repellendus rerum rem iste repudiandae
+                    facilis labore quis, doloribus eligendi sunt quae ullam ea vero obcaecati maxime?</p>
+            </div>
+            <div class="col-md-3">
+                <a href="">Lorem, ipsum.</a>
+                <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, ex voluptatibus, maiores porro quia
+                    cum voluptate exercitationem laudantium sunt modi debitis repellat maxime, cupiditate quod voluptas.
+                    Vel, dolores libero aliquam autem sapiente consequuntur repellendus rerum rem iste repudiandae
+                    facilis labore quis, doloribus eligendi sunt quae ullam ea vero obcaecati maxime?</p>
+            </div>
+            <div class="col-md-3">
+                <a href="">Lorem, ipsum.</a>
+                <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, ex voluptatibus, maiores porro quia
+                    cum voluptate exercitationem laudantium sunt modi debitis repellat maxime, cupiditate quod voluptas.
+                    Vel, dolores libero aliquam autem sapiente consequuntur repellendus rerum rem iste repudiandae
+                    facilis labore quis, doloribus eligendi sunt quae ullam ea vero obcaecati maxime?</p>
+            </div>
+          
+        </div>
+        
+        <hr>
+
+        <div class="row second">
+            <div class="col-md-12">
+                <h2>Heading</h2>
+            </div>
+            <div class="col-md-3">
+                <a href="">Lorem, ipsum.</a>
+                <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, ex voluptatibus, maiores porro quia
+                    cum voluptate exercitationem laudantium sunt modi debitis repellat maxime, cupiditate quod voluptas.
+                    Vel, dolores libero aliquam autem sapiente consequuntur repellendus rerum rem iste repudiandae
+                    facilis labore quis, doloribus eligendi sunt quae ullam ea vero obcaecati maxime?</p>
+            </div>
+            
+         
+           
+          
+        </div>
+        
+        <hr>
+
+    </div>
+
+{% endblock %}

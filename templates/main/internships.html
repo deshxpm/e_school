@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+<!-- mobile menu -->
+{% load static %}
+{% block content %}
+<br>
+
+
+<section class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 ">
+                <div class="text-center ">
+                    <h2 class="text-white">Internships</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    {% for obj in objects %}
+    <div>
+        <h2 class="float-left">{{ forloop.counter }} .</h2>
+        <div style="margin-left:50px">
+            <h1>{{ obj.name }}</h1>
+            <h2>{{ obj.company_name }}</h2>
+            <h4>Duration {{ obj.get_duration }} months</h4>
+            <h4>Stipend {{ obj.stipend }}</h4>
+            <h5>Start Date - {{ obj.start_date }} End Date - {{ obj.end_date }}</h5>
+            <a class="btn btn-outline-danger" style="color: white ;"
+                href="{% url 'internships-detail' obj.pk %}">Detail</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<br>
+<br>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="https://www.softwaresuggest.com/blog/wp-content/uploads/2019/10/e-learning-marketing-1.png" style="width: 100%; height:100%;">
+        </div>
+        <div class="col-md-6">
+            <h2> Course Detail</h2>
+            <h4>{{ object.name }}</h4>
+            <h4>{{ object.slug }}</h4>
+            <div class="row-cols-lg-4">
+                <div>
+                    <h3>List Of Videos</h3>
+                    {% for video in videos %}
+                        <h5>{{ forloop.counter }} ] {{ video.name }}</h5>
+                    {% endfor %}
+                </div>
+                <div>
+                    <h3>List Of Notes</h3>
+                    {% for doc in notes %}
+                        <h5>{{ forloop.counter }} ] {{ doc.name }}</h5>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row-cols-1">
+                <a class="btn btn-outline-info" href="{% url 'add_videos_to_course' object.slug %}">Add Video</a>
+                <a class="btn btn-outline-info" href="{% url 'add_notes_to_course' object.slug %}">Add Notes</a>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

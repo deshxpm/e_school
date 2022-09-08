@@ -1,0 +1,74 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block style %}
+  <style>
+  	@media only screen and (max-width: 554px){
+  	.vid-wid{
+  		width: 250px;
+  	}
+  }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 pt-0 pt-lg-5">
+                    <div class="text-center pt-0 pt-lg-5">
+                        <h2 class="text-white">{{ course.name }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- banner -->
+
+    <section class="contact-data">
+        <div class="container">
+            <div id="contact-bg" class="row mt-5">
+                <div class="col-lg-6">
+                    <div class="contact-box text-center mb-5 mb-lg-0">
+                        <div class="contact-icon mb-4">
+                            <img href="{% url 'course_videos_for_purchase_user' course.slug %}" src="{% static 'main/img/dreamstime_xxl_124673889.jpg' %}" class="mb-3">
+                            <a class="h5" href="{% url 'course_videos_for_purchase_user' course.slug %}">Course videos</a>
+                        </div>
+                        <div class="course-btn">
+                                <a href="{% url 'course_videos_for_purchase_user' course.slug %}" class="theme-btn">
+                                    <i class="fas fa-play-circle mr-2" aria-hidden="true"></i>
+                                    <span>view Videos</span>
+                                </a>
+                        </div>
+{#                        <div class="text">#}
+{#                            <video autoplay="" loop="" controls="" width="490" height="280" class="vid-wid">#}
+{#                                <source type="video/mp4" src="https://endtest-videos.s3-us-west-2.amazonaws.com/documentation/endtest_data_driven_testing_csv.mp4">#}
+{#                            </video>#}
+{#                        </div>#}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-box text-center mb-5 mb-lg-0">
+                        <div class="contact-icon mb-4">
+                            <img href="{% url 'course_notes_for_purchase_user' course.slug %}" src="{% static 'main/img/shutterstock_548778247.jpg' %}" class="mb-3">
+                            <a class="h5" href="{% url 'course_notes_for_purchase_user' course.slug %}">Course Notes</a>
+                        </div>
+                        <div class="course-btn">
+                                <a href="{% url 'course_notes_for_purchase_user' course.slug %}" class="theme-btn">
+                                    <i class="fas fa-play-circle mr-2" aria-hidden="true"></i>
+                                    <span>view notes</span>
+                                </a>
+                        </div>
+{#                        <div class="text">#}
+{#                        <video autoplay="" loop="" controls="" width="490" height="280" class="vid-wid">#}
+{#                        <source type="video/mp4" src="https://endtest-videos.s3-us-west-2.amazonaws.com/documentation/endtest_data_driven_testing_csv.mp4">#}
+{#                        </video>#}
+{#                        </div>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

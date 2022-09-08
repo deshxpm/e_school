@@ -1,0 +1,239 @@
+{% extends 'main/base.html' %}
+{% load static %}
+   {% block content %}
+      <!-- Page titlw -->
+      <section class="page-title">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12 pt-0 pt-lg-5">
+                  <div class="text-center pt-0 pt-lg-5">
+                     <h2 class="text-white">Checkout</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="featured pt-5 pb-5">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 chapter mb-5 mb-md-0">
+                  <h1 class="mb-4">Checkout</h1>
+                  <div class="feature-box mb-5 position-relative">
+                     <div class="course-img">
+                        <img src="{{ course.thumbnail.url }}">
+                     </div>
+                     <div class="course-desc">
+                        <div class="fea-content">
+                           <div class="title mb-2">
+                              <span class="fea-title"><a href="#">{{ course.name }}</a></span>
+                              <span class="like-btn"><i class="fal fa-heart font-weight-bold" aria-hidden="true"></i></span>
+                           </div>
+                           <div class="instructor row align-items-center mt-2">
+                              <div class="col-8 pr-0">
+                                 <div class="d-flex align-items-center">
+                                    <div class="mr-2">
+                                       <img src="{{ course.faculty.user.profile_pic.url }}">
+                                    </div>
+                                    <div><span class="name">{{ course.faculty.user.first_name }} {{ course.faculty.user.last_name }}</span></div>
+                                 </div>
+                              </div>
+                              <div class="col-4 text-right">
+                                 <span class="rate"><i class="far fa-rupee-sign" aria-hidden="true"></i>{{ course.price|floatformat }}</span>
+                              </div>
+                           </div>
+                           <div class="courses-data mt-3">
+                              <p>{{ course.small_desc }}</p>
+                              <div class="course-btn">
+                                 <a href="{{ course.get_course_absolute_url }}" class="theme-btn"><i class="fas fa-play-circle mr-2" aria-hidden="true"></i> <span>view course</span></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-6 ml-5">
+                  <div class="purchase-detail mb-3">
+                     <h3 class="mb-4 theme-color">Purchase Details:</h3>
+                     <div class="sep mb-4"></div>
+                     <div class="purchase-box d-flex mb-3">
+                        <div class="title">
+                           <h4>Course Name:</h4>
+                        </div>
+                        <div class="value">
+                           <h4>{{ course.name }}</h4>
+                        </div>
+                     </div>
+                      <div class="purchase-box d-flex mb-3">
+                        <div class="title">
+                           <h4>Course Price</h4>
+                        </div>
+                        <div class="value">
+                           <h4><i class="far fa-rupee-sign"></i>{{ course.price|floatformat }}</h4>
+                        </div>
+                     </div>
+                      {% comment %}
+                     <div class="purchase-box d-flex mb-3">
+                        <div class="title">
+                           <h4>Cource 1:</h4>
+                        </div>
+                        <div class="value">
+                           <select class="series-selector-dropdown cource-drop-down">
+                              <option hidden="" disabled="" value="true"> -- select an option -- </option>
+                              <option value="advertising-copywriting">Advertising and Copywriting</option>
+                              <option value="android-app-development">Android App Development</option>
+                              <option value="art-of-selling">Art of Selling</option>
+                              <option value="artificial-intelligence" disabled="">Artificial Intelligence</option>
+                              <option value="aws-cloud-computing">AWS - Cloud Computing</option>
+                              <option value="civil-engineering">Civil Engineering</option>
+                              <option value="business-management">Business Management</option>
+                              <option value="big-data-engineering">Big Data Engineering</option>
+                              <option value="career-planning">Career Planning for Freshers</option>
+                              <option value="c-c-language">C &amp; C++ Language</option>
+                              <option value="content-writing-marketing">Content Writing &amp; Marketing</option>
+                              <option value="cyber-security">Cyber Security</option>
+                              <option value="data-analytics-for-beginners">Data Analytics for Beginners</option>
+                              <option value="data-science">Data Science</option>
+                              <option value="deep-learning">Deep Learning</option>
+                              <option value="design-thinking">Design Thinking</option>
+                              <option value="digital-marketing">Digital Marketing</option>
+                              <option value="ethical-hacking">Ethical Hacking</option>
+                              <option value="financial-modelling">Financial Modeling</option>
+                              <option value="full-stack-development">Full Stack Development</option>
+                              <option value="graphic-design">Graphic Design</option>
+                              <option value="human-rights-and-duties">Human Rights and Duties</option>
+                              <option value="interior-designing">Interior Designing</option>
+                              <option value="internet-of-things">Internet of Things</option>
+                              <option value="java-python">Java &amp; Python</option>
+                              <option value="lean-six-sigma-white-belt-certification">Lean Six Sigma: White Belt Certification</option>
+                              <option value="marketing-management">Marketing Management </option>
+                              <option value="machine-learning">Machine Learning</option>
+                              <option value="microsoft-excel">Microsoft Excel</option>
+                              <option value="operations-management">Operations Management</option>
+                              <option value="political-sociology">Political Sociology</option>
+                              <option value="product-development">Product Development</option>
+                              <option value="psychology">Psychology</option>
+                              <option value="public-relations">Public Relations</option>
+                              <option value="public-speaking-training">Public Speaking Training</option>
+                              <option value="python">Advanced Python</option>
+                              <option value="soft-skills-and-personality-development">Soft Skills</option>
+                              <option value="statistics">Statistics</option>
+                              <option value="finance-stock-market">Stock Market &amp; Finance</option>
+                              <option value="professional-magic">Virtual Magic Learning</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="sep mb-4"></div>
+                     <div class="purchase-box d-flex mb-3">
+                        <div class="title">
+                           <h4>Cource 2:</h4>
+                        </div>
+                        <div class="value">
+                           <select class="series-selector-dropdown cource-drop-down">
+                              <option hidden="" disabled="" value="true"> -- select an option -- </option>
+                              <option value="advertising-copywriting">Advertising and Copywriting</option>
+                              <option value="android-app-development" selected>Android App Development</option>
+                              <option value="art-of-selling">Art of Selling</option>
+                              <option value="artificial-intelligence" disabled="">Artificial Intelligence</option>
+                              <option value="aws-cloud-computing">AWS - Cloud Computing</option>
+                              <option value="civil-engineering">Civil Engineering</option>
+                              <option value="business-management">Business Management</option>
+                              <option value="big-data-engineering">Big Data Engineering</option>
+                              <option value="career-planning">Career Planning for Freshers</option>
+                              <option value="c-c-language">C &amp; C++ Language</option>
+                              <option value="content-writing-marketing">Content Writing &amp; Marketing</option>
+                              <option value="cyber-security">Cyber Security</option>
+                              <option value="data-analytics-for-beginners">Data Analytics for Beginners</option>
+                              <option value="data-science">Data Science</option>
+                              <option value="deep-learning">Deep Learning</option>
+                              <option value="design-thinking">Design Thinking</option>
+                              <option value="digital-marketing">Digital Marketing</option>
+                              <option value="ethical-hacking">Ethical Hacking</option>
+                              <option value="financial-modelling">Financial Modeling</option>
+                              <option value="full-stack-development">Full Stack Development</option>
+                              <option value="graphic-design">Graphic Design</option>
+                              <option value="human-rights-and-duties">Human Rights and Duties</option>
+                              <option value="interior-designing">Interior Designing</option>
+                              <option value="internet-of-things">Internet of Things</option>
+                              <option value="java-python">Java &amp; Python</option>
+                              <option value="lean-six-sigma-white-belt-certification">Lean Six Sigma: White Belt Certification</option>
+                              <option value="marketing-management">Marketing Management </option>
+                              <option value="machine-learning">Machine Learning</option>
+                              <option value="microsoft-excel">Microsoft Excel</option>
+                              <option value="operations-management">Operations Management</option>
+                              <option value="political-sociology">Political Sociology</option>
+                              <option value="product-development">Product Development</option>
+                              <option value="psychology">Psychology</option>
+                              <option value="public-relations">Public Relations</option>
+                              <option value="public-speaking-training">Public Speaking Training</option>
+                              <option value="python">Advanced Python</option>
+                              <option value="soft-skills-and-personality-development">Soft Skills</option>
+                              <option value="statistics">Statistics</option>
+                              <option value="finance-stock-market">Stock Market &amp; Finance</option>
+                              <option value="professional-magic">Virtual Magic Learning</option>
+                           </select>
+                        </div>
+                     </div>
+
+
+                      <div class="purchase-box d-flex mb-3">
+                        <div class="title">
+                           <h4>Name</h4>
+                        </div>
+                        <div class="value">
+								<div class="input-group">
+					               <input type="text" class="form-control" placeholder="Name">
+					            </div>
+                        </div>
+                     </div>
+
+                      <div class="purchase-box d-flex mb-3">
+                        <div class="title">
+                           <h4>Phone Number</h4>
+                        </div>
+                        <div class="value">
+								<div class="input-group">
+					               <input type="text" class="form-control" placeholder="Phone"> 
+					            </div>
+                        </div>
+                     </div>
+
+                      <div class="purchase-box d-flex mb-3">
+                        <div class="title">
+                           <h4>Email ID</h4>
+                        </div>
+                        <div class="value">
+								<div class="input-group">
+					               <input type="text" class="form-control" name="email" placeholder="Email">
+					            </div>
+                        </div>
+                     </div>
+                  </div>
+                  {% endcomment %}
+                  <div class="purchase-detail mt-5">
+{#                     <h3 class="mb-4 theme-color">Master Art Of Selling:</h3>#}
+                     <div class="sep mb-3"></div>
+                     <form action="{% url 'paytmcheckout' course.slug %}" method="post">
+                        {% csrf_token %}
+                         {% comment %}
+                        <div class="method d-flex mb-4">
+                           <p class="mr-5">
+                              <input type="radio" id="test1" name="radio-group" checked>
+                              <label for="test1">Single cource</label>
+                           </p>
+                           <p>
+                              <input type="radio" id="test2" name="radio-group">
+                              <label for="test2">Series</label>
+                           </p>
+                        </div>
+                        {% endcomment %}
+                        <div class="see-btn full-course">
+{#                           <!-- <a href="{% url 'paytmcheckout' course.slug %}" class="theme-btn"><span>PROCEED TO PAYMENT</span></a> -->#}
+                           <button type="submit" class="theme-btn"><span>PROCEED TO PAYMENT</span></button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+    {% endblock %}

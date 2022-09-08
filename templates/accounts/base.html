@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html lang="en">
+{% load static %}
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="keywords" content="" />
+<meta name="description" content="" />  
+
+<title>{% block title %}Dashboard{% endblock %} {{ user.username }}</title>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7dd77e112a.js" crossorigin="anonymous"></script>
+
+<!-- Bootstrap files (jQuery first, then Popper.js, then Bootstrap JS) -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<link href="{% static 'assets/css/lib/font-awesome.min.css' %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'dashboard/sidebar.css' %}">
+
+{% block extracss %}
+    <style type="text/css">
+        body{
+            color: #ffffff;
+            background: #01579b;
+        }
+    </style>
+{% endblock %}
+
+<script type="text/javascript">
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+    // jQuery code
+
+      $("[data-trigger]").on("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var offcanvas_id =  $(this).attr('data-trigger');
+        $(offcanvas_id).toggleClass("show");
+        $('body').toggleClass("offcanvas-active");
+        $(".screen-overlay").toggleClass("show");
+
+    }); 
+
+
+    // Close menu when pressing ESC
+    $(document).on('keydown', function(event) {
+        if(event.keyCode === 27) {
+           $(".offcanvas").removeClass("show");
+           $("body").removeClass("overlay-active");
+        }
+    });
+
+    $(".btn-close, .screen-overlay").click(function(e){
+        $(".screen-overlay").removeClass("show");
+        $(".offcanvas").removeClass("show");
+        $("body").removeClass("offcanvas-active");
+
+
+    }); 
+    
+}); // jquery end
+</script>
+
+
+</head>
+    {% if messages %}
+        <div class="mt-0 pt-4">
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+        </div>
+    {% endif %}
+    <body>
+        {% block body %}
+
+        
+        <!-- code for left menu slider -->
+        <b class="screen-overlay"></b>
+        <aside class="offcanvas" id="my_offcanvas1">
+            <header class="p-4 bg-light border-bottom">
+                <button class="btn btn-outline-secondary btn-close btn-sm"> &times </button>
+                <img src="" class="img-fluid" alt="logo">
+                <p>Desh Deepak<br>+91 7011101001</p>
+            </header>
+            <nav class="list-group list-group-flush">
+                <a href="/dashboard/" class="list-group-item">Dashboard</a>
+                <a href="{% url 'course_list' %}" class="list-group-item">Course</a>
+                <a href="#" class="list-group-item">Faculty</a>
+                <a href="#" class="list-group-item">ClassRoom</a>
+                <a href="#" class="list-group-item">Teacher</a>
+                <a href="#" class="list-group-item">Student</a>
+                <a href="{% url 'logout' %}" class="list-group-item">Logout</a>
+            </a>
+            <p class="pl-2">Information</p>
+            <a href="#" class="list-group-item">About us</a>
+            <a href="#" class="list-group-item">Terms & Conditions</a>
+            <a href="#" class="list-group-item">Customer Support</a>
+            </nav>
+        </aside>
+        <!-- End code for left menu slider -->
+
+        <header class="section-header bg-light py-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button data-trigger="#my_offcanvas1" style="border:none;" type="button"> 
+                            <img alt="" draggable="false" src="{% static 'img/sidesym.png' %}" class="img-fluid" width="32px" height="auto">
+                        </button>    
+                    </div>
+
+                    <div class="col-md-7">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input class="form-control" placeholder="Search" autocapitalize="sentences" autocomplete="on" autocorrect="on" dir="auto" spellcheck="true" type="text" aria-label="search" data-focusable="true">
+                        </form>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="row">
+                                    
+                            <div class="col-md-12">    
+                               <div class="dropdown show text-right">
+                                    <a class=" dropdown-toggle" href="#" style="text-decoration:none; color:#000000;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <b class="fa fa-profile">Profile</b>
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-right:30px !important;">
+                                        <a class="dropdown-item" href="#">Service</a>
+                                        <a class="dropdown-item" href="#">Circle</a>
+                                        <a class="dropdown-item" href="#">Settings</a>
+                                        <a class="dropdown-item" href="#">Support</a>
+                                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                    </div>
+                                </div>
+                                        
+                            </div>
+                        </div>                    
+                    </div>
+
+                </div>            
+            </div>
+        </header>
+
+        {% block main %}
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h4 class="ml-2">Dashboard</h4>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button class="btn btn-sm btn-outline-secondary">Share</button>
+                        <button class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="     currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        This week
+                    </button>
+                </div>
+            </div>
+
+            <div class="container">
+                <h4>Welcome, Online Learning Plateform <b>My School</b></h4>
+                <a class="btn btn-outline-info" href="{% url 'create_course' %}">Create Course</a>
+                <a class="btn btn-outline-info" href="{% url 'course_list' %}">List Of Course</a>
+            </div>
+
+        {% endblock %}
+
+    </body>
+   {% endblock %}
+
+</html>
+
+
+
+
+
+
+
+
+
+
+{% comment %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+  {% block body %} {% endblock body %}
+
+
+        {% if messages %}
+        <div class="mt-0 pt-4">
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
+{% endcomment %}

@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+ 	<div class="row">
+ 		<div class="col-md-6 mb-4">
+ 			<img class="mt-4" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201907/education_apps.jpeg?wRPOW6.Bi1UOcVbogtIZsdRh98i2o0EI&size=770:433" class="img-fluid">
+ 		</div>
+
+ 		<div class="col-md-6 mb-4" style="border:1px solid orange; border-radius: 4px;">
+ 			<h2 class="text-center mt-4" style="background:linear-gradient(to bottom right,orange,red); border-radius: 4px;">Listed Course</h2>
+		    <div style="height: 520px; overflow-y: scroll;">
+			    {% for obj in objects %}
+				<div class="card-group">
+					<img src="https://www.unschool.in/static/609f6fab15316a2c5205c33591a777da/6580d/ai.jpg" alt="Card image cap">
+					<div class="card">
+					    <div class="card-body text-center">
+					    	<h5 class="card-title text-dark">{{ forloop.counter }}.</h5>
+					      <p class="card-text text-dark">What would you create if you could build machines which had a mind of their own?.</p>
+					      <a href="{{ obj.get_course_absolute_url }}" class="btn btn-primary">{{ obj.name }}</a>
+					    </div>
+					</div>
+				</div>
+			    {% endfor %}
+			</div>
+ 		</div>
+
+ 	</div>
+
+</div>
+
+{% endblock %}

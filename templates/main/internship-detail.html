@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+<!-- mobile menu -->
+{% load static %}
+{% block content %}
+<br>
+
+
+<div class="container">
+    <div style="margin-left:100px">
+        <h1>{{ object.name }}</h1>
+        <h2>{{ object.company_name }}</h2>
+        <h4>Duration {{ object.get_duration }} months</h4>
+        <h4>Stipend {{ object.stipend }}</h4>
+        <h5>Start Date - {{ object.start_date }} End Date - {{ object.end_date }}</h5>
+        <p>{{ object.desc }}</p>
+        {% if request.user.is_authenticated %}
+            <a class="btn btn-outline-info" href="{{ object.url }}">Apply Now</a>
+        {% else %}
+            <h3 style="color: red">Please Kindly Register</h3>
+            <button class="btn btn-outline-info" href="#">Apply Now</button>
+            <a class="btn btn-outline-danger" href="{% url 'register' %}">Register Here</a>
+        {% endif %}
+    </div>
+</div>
+
+
+<br>
+    <br>
+{% endblock %}

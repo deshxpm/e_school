@@ -1,0 +1,113 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 pt-0 pt-lg-5">
+                    <div class="text-center pt-0 pt-lg-5">
+                        <h2 class="text-white">Contact Us</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact-data">
+	<div class="container">
+		<div id="contact-bg" class="row mt-5">
+			<div class="col-lg-6">
+				<div class="contact-box text-center mb-5 mb-lg-0">
+					<div class="contact-icon mb-4">
+						<img src="{% static 'main/img/history-icon.png' %}" class="mb-3">
+						<h5>Get In Touch </h5>		
+					</div>
+					<div class="text">
+						<ul class="contact-list">
+	                        <li>
+	                            <div class="cta-box d-flex align-items-center mb-4">
+	                                <div class="cta-icon">
+	                                    <i class="fal fa-envelope-open"></i>
+	                                </div>
+	                                <div class="cta-text">
+	                                    <h6>Locations</h6>
+	                                    <span>250 Main Street, New York</span>
+	                                </div>
+	                            </div>
+	                        </li>
+	                        <li>
+	                            <div class="cta-box d-flex align-items-center mb-4">
+	                                <div class="cta-icon">
+	                                    <i class="fal fa-phone"></i>
+	                                </div>
+	                                <div class="cta-text">
+	                                    <h6>Email Us</h6>
+	                                    <span>info@learning.com</span>
+	                                </div>
+	                            </div>
+	                        </li>
+	                        <li>
+	                            <div class="cta-box d-flex align-items-center mb-4 pb-20">
+	                                <div class="cta-icon">
+	                                    <i class="fal fa-map-marker-alt"></i>
+	                                </div>
+	                                <div class="cta-text">
+	                                    <h6>Phone Us</h6>
+	                                    <span>+ 12 3456 7890</span>
+	                                </div>
+	                            </div>
+	                        </li>
+	                    </ul>
+	                </div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div id="schedule-form" class="contact-box text-center mt-4 mt-lg-0">
+					<div class="contact-icon mb-4">
+						<img src="{% static 'main/img/call-icon.png' %}" class="mb-3">
+						<h5>Leave Us Message</h5>		
+					</div>
+                    <form method="post">
+					    <div class="text">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-append">
+                                            <div class="input-group-text bg-transparent"><i class="fal fa-user"></i></div>
+                                        </span>
+                                       <input type="text" name="name" class="form-control" placeholder="Name">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-append">
+                                            <div class="input-group-text bg-transparent"><i class="fal fa-mobile-android"></i></div>
+                                        </span>
+                                       <input type="text" name="phone_number" class="form-control" placeholder="Phone">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-append">
+                                            <div class="input-group-text bg-transparent"><i class="fal fa-envelope"></i></div>
+                                        </span>
+                                       <input type="email" name="email" class="form-control" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group message-box">
+                                        <span class="input-group-append">
+                                            <div class="input-group-text bg-transparent"><i class="fal fa-signal-3"></i></div>
+                                        </span>
+                                       <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <button type="Submit" value="Send" class="theme-btn send-btn"><span>Send <i class="far fa-long-arrow-right ml-2"></i></span></button>
+                                    </div>
+                                </div>
+                            </div>
+					    </div>
+                    </form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

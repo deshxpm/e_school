@@ -1,0 +1,48 @@
+python3 manage.py migrate
+python3 manage.py shell
+
+>>> from django.contrib.contenttypes.models import ContentType
+>>> ContentType.objects.all().delete()
+>>> quit()
+
+python3 manage.py loaddata db.json
+python3 manage.py runserver
+
+
+While pushing
+
+First Step 
+1. 
+>>> git stash ( TO Save Your changes )
+>>> git checkout master
+>>> git pull 
+
+2.
+Without Branch
+>>> git stash apply
+
+OR With Branch 
+>>> git checkout branch-name
+
+OR Create New Branch
+
+>>> git checkout -b new-branch-name
+>>> git stash apply
+
+3.
+>>> git commit
+>>> git push origin master
+
+
+
+Note:
+
+: Commit messages should have proper message with  what you fixed and where
+: Similarly The branch name should also be the valid name 
+
+
+
+
+
+
+

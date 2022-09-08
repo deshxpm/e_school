@@ -1,0 +1,147 @@
+{% load static %}
+
+<!-- mobile menu -->
+<div class="mobile-menu d-block d-lg-none">
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="{% url 'home' %}">HOME</a>
+		<a href="{% url 'course_list' %}">COURSES</a>
+		<a href="{% url 'blog_home' %}">BLOGS</a>
+		<a href="{% url 'about_us' %}">ABOUT</a>
+		<a href="#">TRAINING</a>
+		<div class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+				aria-expanded="false" id="dropdownMenuButton">INTERNSHIP</a>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" href="{% url 'internships' %}">NATIONAL</a>
+				<a class="dropdown-item" href="#">INTER-NATIONAL</a>
+				<a class="dropdown-item" href="{% url 'add_internship' %}">ADD INTERNSHIP</a>
+			</div>
+		</div>
+		{# <a href="{% url 'about_us' %}">CONTACT US</a>#}
+		{# <a href="#" data-toggle="modal" data-target="#mySingup">SIGN IN</a>#}
+
+		{% if request.user.is_authenticated %}
+		{# <a href="#">Profile</a>#}
+		<div class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+				aria-expanded="false" id="dropdownMenuButton1">PROFILE</a>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+				<a class="dropdown-item" href="{% url 'purchase_course' %}">Course</a>
+				<a class="dropdown-item" href="#">Favourites</a>
+				<a class="dropdown-item" style="color: red" href="{% url 'logout' %}">Logout</a>
+			</div>
+		</div>
+		{% else %}
+		<a href="{% url 'login' %}">SIGN IN</a>
+		{% endif %}
+	</div>
+</div>
+
+<!-- header -->
+<header>
+	<div class="top-bar d-none d-lg-block" style="background:#5d75b8;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<!-- <div class="social-links p-0">
+		                <ul class="d-flex m-0 p-0 justify-content-start">
+		                  <li><a href="tel:12 3456 7890"><i class="fas fa-phone-alt mr-1"></i> + 12 3456 7890 </a></li>
+		                  <li><a href="mailto:info@learning.com"><i class="fas fa-envelope mr-1"></i> info@learning.com</a></li>
+		                </ul>
+		            </div> -->
+				</div>
+				<div class="col-md-6">
+					<div class="social-links p-0">
+						<ul class="d-flex m-0 justify-content-end">
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-skype"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row mt-0 mt-lg-2">
+			<div class="col-lg-12">
+				<nav class="navbar navbar-expand-lg p-0">
+					<a class="navbar-brand m-0 p-0" href="#">
+{#						 <img style="" src="{% static 'main/img/internyuvaLogo-black-Resized.jpg' %}" />#}
+						<img style="max-width: 100px; height: 100px" src="https://raw.githubusercontent.com/internyuva/internyuva/raw/master/static/main/img/internyuvaLogo-black-Resized.jpg" />
+					</a>
+{#                    https://raw.githubusercontent.com/internyuva/internyuva/raw/master/static/main/img/internyuvaLogo-black-Resized.jpg#}
+					<div class="mobile-menu-open d-block d-lg-none" onclick="openNav()">
+						<i><img src="{% static 'main/img/menu-icon.png' %}"></i>
+					</div>
+					<div class="collapse navbar-collapse pr-2" id="collapsibleNavbar">
+						<ul class="navbar-nav ml-auto align-items-center">
+							<li class="nav-item">
+								<a class="nav-link active" href="{% url 'home' %}">HOME</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'course_list' %}">COURSES</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'blog_home' %}">BLOGS</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'about_us' %}">ABOUT</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">TRAINING</a>
+							</li>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="dropdown">
+
+								<li class="nav-item">
+									<a class="nav-link" href="#">INTERNSHIP</a>
+								</li>
+								<div class="dropdown-content">
+									<a href="{% url 'internships' %}">NATIONAL</a>
+									<a href="#">INTER-NATIONAL</a>
+                                    <a href="{% url 'add_internship' %}">ADD INTERNSHIP</a>
+
+								</div>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							{# <li class="nav-item">#}
+								{# <a class="nav-link" href="{% url 'contact_us' %}">CONTACT US</a>#}
+								{# </li>#}
+
+
+							{# <li class="nav-item">#}
+								{% comment %}
+								<a class="nav-link theme-btn" href="#" data-toggle="modal"
+									data-target="#mySingup"><span>SIGN IN</span></a>
+								{% endcomment %}
+								{% if request.user.is_authenticated %}
+								{# <a href="#" data-toggle="modal">Profile</a>#}
+								<div class="dropdown">
+							<li class="nav-item">
+								<a class="nav-link" href="#">PROFILE</a>
+							</li>
+							<div class="dropdown-content">
+								<a href="{% url 'purchase_course' %}">Course</a>
+								{# <a href="#">Favourites</a>#}
+								{# <a class="nav-link theme-btn" href="{% url 'logout' %}"><span>Logout</span></a>#}
+								<a href="{% url 'update-profile' %}">Edit Profile</a>
+								<a href="{% url 'blog_create' %}">Create Blog Post</a>
+
+								<a style="color: red" href="{% url 'logout' %}"><span>Logout</span></a>
+							</div>
+					</div>
+					{% else %}
+					<a class="nav-link theme-btn" href="{% url 'register' %}"><span>SIGN IN</span></a>
+					{% endif %}
+
+					{# </li>#}
+					</ul>
+			</div>
+			</nav>
+		</div>
+	</div>
+	</div>
+</header>
